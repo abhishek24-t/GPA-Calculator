@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPA Intellect - AI-Powered GPA Calculator for SPPU Engineering Students</title>
+  <meta name="description" content="Calculate SGPA, CGPA, target GPA and SPPU percentage with zero calculation errors. AI-powered academic advisor built for SPPU CBCS engineering students.">
+  <meta property="og:title" content="GPA Intellect - Smart CGPA Calculator for SPPU Students">
+  <meta property="og:description" content="SGPA, CGPA, target planning and SPPU percentage conversion with an AI advisor that never guesses the math.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav class="navbar" id="mainNav" role="navigation" aria-label="Main navigation">
+  <div class="navbar-inner">
+    <a class="navbar-logo" href="index.html" aria-label="GPA Intellect home">
+      <div class="navbar-logo-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <span class="navbar-logo-name">GPA Intellect</span>
+    </a>
+    <div class="navbar-links" role="list">
+      <a class="navbar-link" href="#features" role="listitem">Features</a>
+      <a class="navbar-link" href="#howitworks" role="listitem">How it works</a>
+      <a class="navbar-link" href="#pricing" role="listitem">Pricing</a>
+      <a class="navbar-link" href="#faq" role="listitem">FAQ</a>
+    </div>
+    <div class="navbar-actions">
+      <a class="navbar-signin" href="index.html">Sign in</a>
+      <a class="btn btn-primary" href="index.html" style="padding:8px 18px;font-size:0.84rem;">Open App</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features">Features</a>
+    <a href="#howitworks">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="index.html">Open App</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-sparkles" aria-hidden="true">
+    <!-- Chrome 4-point sparkle stars SVG -->
+    <svg class="sparkle" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <defs>
+        <linearGradient id="sg1" x1="16" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="50%" stop-color="#6b6b70"/>
+          <stop offset="100%" stop-color="#1a1a1d"/>
+        </linearGradient>
+      </defs>
+      <path d="M16 0 C16 0 18 12 28 16 C18 20 16 32 16 32 C16 32 14 20 4 16 C14 12 16 0 16 0 Z" fill="url(#sg1)"/>
+    </svg>
+    <svg class="sparkle" width="20" height="20" viewBox="0 0 32 32" fill="none">
+      <defs><linearGradient id="sg2" x1="16" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ffffff"/><stop offset="50%" stop-color="#6b6b70"/><stop offset="100%" stop-color="#1a1a1d"/></linearGradient></defs>
+      <path d="M16 0 C16 0 18 12 28 16 C18 20 16 32 16 32 C16 32 14 20 4 16 C14 12 16 0 16 0 Z" fill="url(#sg2)"/>
+    </svg>
+    <svg class="sparkle" width="14" height="14" viewBox="0 0 32 32" fill="none">
+      <defs><linearGradient id="sg3" x1="16" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ffffff"/><stop offset="50%" stop-color="#6b6b70"/><stop offset="100%" stop-color="#1a1a1d"/></linearGradient></defs>
+      <path d="M16 0 C16 0 18 12 28 16 C18 20 16 32 16 32 C16 32 14 20 4 16 C14 12 16 0 16 0 Z" fill="url(#sg3)"/>
+    </svg>
+  </div>
+  <div class="container">
+    <a href="#features" class="hero-announce">
+      <span class="hero-announce-dot" aria-hidden="true"></span>
+      New: AI academic advisor is live
+    </a>
+    <h1>Boost your CGPA<br>with smart planning</h1>
+    <p class="hero-sub">SGPA, CGPA, target planning and SPPU percentage conversion — with an AI advisor that never guesses the math.</p>
+    <div class="hero-cta">
+      <a href="index.html" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>
+        Start for free
+      </a>
+      <a href="#howitworks" class="btn btn-secondary-outline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        Watch demo
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TRUST STRIP ═══════════════════ -->
+<div class="trust-strip" aria-label="Supported engineering branches">
+  <div class="trust-track" aria-hidden="true">
+    <span class="trust-badge">SPPU CBCS</span>
+    <span class="trust-badge">Computer Engineering</span>
+    <span class="trust-badge">Information Technology</span>
+    <span class="trust-badge">ENTC Engineering</span>
+    <span class="trust-badge">Mechanical Engineering</span>
+    <span class="trust-badge">Civil Engineering</span>
+    <span class="trust-badge">AI and Data Science</span>
+    <span class="trust-badge">Electrical Engineering</span>
+    <span class="trust-badge">8 Grade Brackets</span>
+    <span class="trust-badge">SPPU CBCS</span>
+    <span class="trust-badge">Computer Engineering</span>
+    <span class="trust-badge">Information Technology</span>
+    <span class="trust-badge">ENTC Engineering</span>
+    <span class="trust-badge">Mechanical Engineering</span>
+    <span class="trust-badge">Civil Engineering</span>
+    <span class="trust-badge">AI and Data Science</span>
+    <span class="trust-badge">Electrical Engineering</span>
+    <span class="trust-badge">8 Grade Brackets</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ FEATURES ═══════════════════ -->
+<section class="section" id="features">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:52px;" class="reveal">
+      <div class="chip"><span class="chip-dot"></span>Features</div>
+      <h2 class="grad-text" style="font-size:clamp(1.9rem,4vw,3rem);font-weight:900;letter-spacing:-0.04em;max-width:640px;margin:0 auto 14px;">A grade tool that actually does the math</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;max-width:480px;margin:0 auto;">Every result is calculated using the official SPPU CBCS formula. No estimates, no approximations.</p>
+    </div>
+    <div class="features-bento">
+      <!-- Card A: wide SGPA + CGPA -->
+      <div class="glass-card feature-card feature-card-wide reveal">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;">
+          <div>
+            <div class="feature-card-inner-title">Instant SGPA and CGPA</div>
+            <div class="feature-card-inner-desc">Add subjects, credits, and letter grades. Your SGPA updates in real time using the exact SPPU CBCS weighted formula. Stack semesters for cumulative CGPA.</div>
+            <div class="mock-inputs">
+              <span class="mock-pill">Engineering Maths — 4 cr</span>
+              <span class="mock-pill mock-grade">O — 10.0 GP</span>
+              <span class="mock-pill">DSA — 4 cr</span>
+              <span class="mock-pill mock-grade">A+ — 9.0 GP</span>
+              <span class="mock-pill">Physics — 3 cr</span>
+              <span class="mock-pill mock-grade">A — 8.0 GP</span>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:0.72rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">Calculated SGPA</div>
+            <div style="font-size:4rem;font-weight:900;letter-spacing:-0.05em;color:var(--text-white);font-variant-numeric:tabular-nums;">9.18</div>
+            <div style="font-size:0.84rem;color:var(--text-muted);">/ 10.0 — 11 credits</div>
+            <div style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:4px 12px;border-radius:999px;background:var(--pass-bg);border:1px solid var(--pass-border);font-size:0.72rem;font-weight:700;color:var(--pass-color);">
+              No backlogs detected
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card B: Progress chart -->
+      <div class="glass-card feature-card reveal">
+        <div class="feature-card-inner-title">Semester SGPA Trend</div>
+        <div class="feature-card-inner-desc">Visualize your academic trajectory over all semesters with a live chart, plus delta badges showing your improvement.</div>
+        <div class="feature-chart" aria-hidden="true">
+          <svg viewBox="0 0 280 110" width="100%" height="100%" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </linearGradient>
+            </defs>
+            <path d="M0 85 L40 70 L80 75 L120 55 L160 45 L200 35 L240 20 L280 10 L280 110 L0 110 Z" fill="url(#chartGrad)"/>
+            <path d="M0 85 L40 70 L80 75 L120 55 L160 45 L200 35 L240 20 L280 10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="280" cy="10" r="5" fill="#fff" filter="url(#glow)"/>
+            <circle cx="280" cy="10" r="9" fill="rgba(255,255,255,0.18)"/>
+          </svg>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <span style="padding:4px 10px;border-radius:999px;background:var(--pass-bg);border:1px solid var(--pass-border);font-size:0.71rem;font-weight:700;color:var(--pass-color);">+0.28 this sem</span>
+          <span style="padding:4px 10px;border-radius:999px;background:rgba(255,255,255,0.05);border:1px solid var(--border-subtle);font-size:0.71rem;font-weight:700;color:var(--text-secondary);">8.68 SGPA</span>
+        </div>
+      </div>
+      <!-- Card C: Target predictor -->
+      <div class="glass-card feature-card reveal">
+        <div class="feature-card-inner-title">Target Predictor</div>
+        <div class="feature-card-inner-desc">Enter your current CGPA, credits done, and target. Instantly see the required SGPA for the rest of your degree.</div>
+        <div class="mock-gauge">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;color:var(--text-muted);margin-bottom:4px;">
+            <span>Required SGPA</span>
+            <span style="font-weight:700;color:var(--text-white);font-size:1rem;">8.4</span>
+          </div>
+          <div class="gauge-bar"><div class="gauge-fill"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:var(--text-muted);margin-top:5px;"><span>0</span><span>5</span><span>10</span></div>
+          <div style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:var(--pass-bg);border:1px solid var(--pass-border);font-size:0.73rem;font-weight:700;color:var(--pass-color);">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Achievable
+          </div>
+        </div>
+        <div style="font-size:0.79rem;color:var(--text-muted);margin-top:12px;">Need 8.4 SGPA average to reach 8.0 CGPA goal</div>
+      </div>
+    </div>
+    <!-- SPPU Converter card -->
+    <div class="glass-card feature-card reveal" style="margin-top:16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;">
+        <div>
+          <div class="feature-card-inner-title">SPPU Percentage Converter</div>
+          <div class="feature-card-inner-desc">Enter your CGPA and instantly get the equivalent percentage and degree class as per official SPPU guidelines. With a collapsible formula explanation.</div>
+        </div>
+        <div class="mock-class-badges">
+          <span class="class-badge">CGPA 8.39</span>
+          <span class="class-badge" style="background:rgba(255,255,255,0.05);color:var(--text-secondary);">69.2%</span>
+          <span class="class-badge" style="background:rgba(255,255,255,0.03);color:var(--text-muted);">First Class</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STATS ═══════════════════ -->
+<section class="section-sm" id="stats">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;" class="reveal">
+      <div class="chip"><span class="chip-dot"></span>Our Achievements</div>
+      <h2 class="grad-text" style="font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:900;letter-spacing:-0.04em;">Numbers students can trust</h2>
+    </div>
+    <div class="stats-tiles">
+      <div class="glass-card stat-tile reveal">
+        <div class="stat-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="stat-tile-num" data-count="27">0</div>
+        <div class="stat-tile-label">Automated tests<br>across core calculators</div>
+      </div>
+      <div class="glass-card stat-tile reveal" style="transition-delay:0.1s">
+        <div class="stat-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="stat-tile-num" data-count="0">0</div>
+        <div class="stat-tile-label">Hallucinated calculations.<br>Math is always verified</div>
+      </div>
+      <div class="glass-card stat-tile reveal" style="transition-delay:0.2s">
+        <div class="stat-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <div class="stat-tile-num" data-count="8">0</div>
+        <div class="stat-tile-label">Grade brackets<br>fully supported (O to F)</div>
+      </div>
+      <div class="glass-card stat-tile reveal" style="transition-delay:0.3s">
+        <div class="stat-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="stat-tile-num" data-count="100">0</div>
+        <div class="stat-tile-label">% works offline.<br>Deterministic engine, no cloud</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
+<section class="section" id="howitworks">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:52px;" class="reveal">
+      <div class="chip"><span class="chip-dot"></span>How it works</div>
+      <h2 class="grad-text" style="font-size:clamp(1.9rem,4vw,3rem);font-weight:900;letter-spacing:-0.04em;">Three steps to academic clarity</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="glass-card step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Add subjects and grades</div>
+        <div class="step-desc">Enter your course names, credit hours, and SPPU letter grades (O, A+, A, B+, B, C, P, F) or numeric grade points. Add as many subjects as needed.</div>
+      </div>
+      <div class="glass-card step-card reveal" style="transition-delay:0.12s">
+        <div class="step-num">02</div>
+        <div class="step-title">Get SGPA and CGPA instantly</div>
+        <div class="step-desc">Results are calculated in real time using the exact SPPU CBCS formula. Stack semesters to see your cumulative GPA, percentage, and degree class automatically.</div>
+      </div>
+      <div class="glass-card step-card reveal" style="transition-delay:0.24s">
+        <div class="step-num">03</div>
+        <div class="step-title">Ask the AI to plan your next semester</div>
+        <div class="step-desc">Tell the AI your target CGPA and remaining credits. It calculates the exact SGPA you need and gives you a realistic, math-grounded plan — no hallucinated advice.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ AI SHOWCASE ═══════════════════ -->
+<section class="section" id="ai-advisor" style="background:radial-gradient(ellipse 60% 40% at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 70%);">
+  <div class="container">
+    <div class="ai-showcase">
+      <div class="ai-copy reveal">
+        <div class="chip"><span class="chip-dot"></span>AI Advisor</div>
+        <h2 class="grad-text">Your AI advisor that actually knows the math</h2>
+        <p>Unlike general-purpose AI, GPA Intellect runs every calculation through a verified deterministic engine first. The LLM only handles natural language — the numbers are always exact.</p>
+        <div class="zero-halluc-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Deterministic engine: zero hallucination on calculations
+        </div>
+        <p style="margin-top:16px;font-size:0.83rem;color:var(--text-muted);">Works 100% offline using the rule-based engine. OpenAI GPT-4o-mini unlocks open-ended conversation when connected.</p>
+      </div>
+      <div class="glass-card chat-mock reveal" style="transition-delay:0.15s">
+        <div class="chat-mock-msg" role="log" aria-label="AI conversation example">
+          <div class="chat-mock-user">How can I raise my CGPA from 6.8 to 7.5 in 2 semesters?</div>
+          <div class="chat-mock-ai">
+            <strong>Analysis:</strong> You currently have a CGPA of 6.8. To reach 7.5 in 2 semesters, I need to know your remaining credits.<br><br>
+            Assuming 40 credits remain (20 per semester):<br>
+            Required average SGPA = (7.5 x total_credits - 6.8 x completed_credits) / 40<br><br>
+            <strong>Result: You need approximately 8.85 SGPA in each of the next 2 semesters.</strong><br>
+            This is achievable with strong performance — aim for A+ in high-credit subjects.
+            <div class="chat-mock-badge">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Deterministic engine
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PRICING ═══════════════════ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:52px;" class="reveal">
+      <div class="chip"><span class="chip-dot"></span>Pricing</div>
+      <h2 class="grad-text" style="font-size:clamp(1.9rem,4vw,3rem);font-weight:900;letter-spacing:-0.04em;">Flexible pricing for every student</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:12px;">Start free. Upgrade when you need the AI advisor and advanced features.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="glass-card pricing-card reveal">
+        <div class="pricing-title">Free</div>
+        <div class="pricing-price">Rs. 0<span class="pricing-per">/forever</span></div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>SGPA Calculator</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>CGPA Calculator</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>SPPU Percentage Converter</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Local Academic History</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Backlog Impact Simulator</div>
+          <div class="pricing-feature" style="opacity:0.4;"><span class="check-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>AI Advisor</div>
+        </div>
+        <a href="index.html" class="btn btn-secondary-outline pricing-cta">Get Started Free</a>
+      </div>
+      <!-- Pro (featured) -->
+      <div class="glass-card pricing-card featured reveal" style="transition-delay:0.1s">
+        <div class="pricing-title">Pro</div>
+        <div class="pricing-price" style="color:#09090b;">Rs. 99<span class="pricing-per" style="color:#52525b;">/month</span></div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Everything in Free</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>AI Advisor (GPT-4o-mini)</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Unlimited Saved Semesters</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Export PDF and CSV</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>What-If Analysis</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Target Feasibility Predictor</div>
+        </div>
+        <a href="index.html" class="btn btn-secondary-outline pricing-cta" style="background:rgba(0,0,0,0.08);border-color:rgba(0,0,0,0.15);color:#09090b;">Get Pro</a>
+      </div>
+      <!-- Campus -->
+      <div class="glass-card pricing-card reveal" style="transition-delay:0.2s">
+        <div class="pricing-title">Campus</div>
+        <div class="pricing-price">Rs. 499<span class="pricing-per">/dept./month</span></div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Everything in Pro</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Department Dashboard</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Batch Analytics</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Priority Support</div>
+          <div class="pricing-feature"><span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Custom Grading Schemes</div>
+        </div>
+        <a href="mailto:contact@gpaintellect.in" class="btn btn-secondary-outline pricing-cta">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:44px;" class="reveal">
+      <div class="chip"><span class="chip-dot"></span>Testimonials</div>
+      <h2 class="grad-text" style="font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:900;letter-spacing:-0.04em;">What students say</h2>
+    </div>
+    <div class="testimonials-track">
+      <div class="glass-card testimonial-card reveal">
+        <div class="testimonial-avatar" aria-hidden="true">PR</div>
+        <p class="testimonial-quote">"Finally a calculator that uses the actual SPPU formula. I used to manually calculate my SGPA every semester and always got confused about credits. This is a lifesaver."</p>
+        <div class="testimonial-name">Priya Rathod</div>
+        <div class="testimonial-role">Computer Engineering, Sem 4 — SPPU</div>
+      </div>
+      <div class="glass-card testimonial-card reveal" style="transition-delay:0.1s">
+        <div class="testimonial-avatar" aria-hidden="true">AK</div>
+        <p class="testimonial-quote">"The target predictor told me I need 8.8 SGPA for the last 2 semesters to hit my 7.5 CGPA goal. Super useful for planning how hard I need to study."</p>
+        <div class="testimonial-name">Aditya Kulkarni</div>
+        <div class="testimonial-role">Mechanical Engineering, Sem 6 — SPPU</div>
+      </div>
+      <div class="glass-card testimonial-card reveal" style="transition-delay:0.2s">
+        <div class="testimonial-avatar" aria-hidden="true">SM</div>
+        <p class="testimonial-quote">"I asked the AI how to recover from a backlog in a 4-credit subject. It gave me the exact CGPA impact — not a generic answer. This is built differently."</p>
+        <div class="testimonial-name">Sneha More</div>
+        <div class="testimonial-role">Information Technology, Sem 5 — SPPU</div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:0.76rem;color:var(--text-muted);margin-top:20px;">Placeholder testimonials — real feedback will be displayed once collected.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="faq-copy reveal">
+        <div class="chip"><span class="chip-dot"></span>FAQ</div>
+        <h2 class="grad-text" style="font-size:clamp(1.9rem,4vw,2.8rem);font-weight:900;letter-spacing:-0.04em;">Your questions,<br>answered</h2>
+        <p style="margin-top:14px;">Anything else? <a href="mailto:contact@gpaintellect.in" style="color:var(--text-off-white);">Email us</a>.</p>
+      </div>
+      <div class="faq-list reveal" style="transition-delay:0.1s">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq1-btn" aria-controls="faq1-ans">
+            Is it accurate for SPPU CBCS?
+            <svg class="faq-arrow" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" id="faq1-ans" role="region" aria-labelledby="faq1-btn">
+            <p>Yes. The calculation engine implements the exact SPPU 10-point CBCS formula: SGPA = sum(Credit x Grade Point) / sum(Credits). The grade point mapping (O=10, A+=9, A=8, B+=7, B=6, C=5, P=4, F=0) follows the official SPPU ordinance. Percentage conversion uses the university-approved formula for the relevant CGPA range.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq2-btn" aria-controls="faq2-ans">
+            Does it work offline?
+            <svg class="faq-arrow" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" id="faq2-ans" role="region" aria-labelledby="faq2-btn">
+            <p>The deterministic calculation engine (SGPA, CGPA, target predictor, backlog simulator) works completely offline once loaded. The AI chat's open-ended mode uses OpenAI GPT-4o-mini, which requires an internet connection and your API key — but the math-based fallback always runs locally.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq3-btn" aria-controls="faq3-ans">
+            Is my data private?
+            <svg class="faq-arrow" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" id="faq3-ans" role="region" aria-labelledby="faq3-btn">
+            <p>All semester data is stored in a local SQLite database on your own machine via the FastAPI backend. Nothing is uploaded to any cloud server. Your academic records stay on your device.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq4-btn" aria-controls="faq4-ans">
+            What happens if I have a backlog?
+            <svg class="faq-arrow" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" id="faq4-ans" role="region" aria-labelledby="faq4-btn">
+            <p>The Backlog Manager lets you simulate how clearing a backlog affects your CGPA. Under the SPPU CBCS standard rule, the F grade (0 GP) is replaced by your passing grade points. The tool shows the exact CGPA jump you can expect. You can also test capped improvement scenarios.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq5-btn" aria-controls="faq5-ans">
+            Can I export my results?
+            <svg class="faq-arrow" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" id="faq5-ans" role="region" aria-labelledby="faq5-btn">
+            <p>PDF and CSV export is available in the Pro plan. The free tier stores all data locally in SQLite and you can view, edit, or delete records at any time through the Academic History section.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq6-btn" aria-controls="faq6-ans">
+            Is the AI always on?
+            <svg class="faq-arrow" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" id="faq6-ans" role="region" aria-labelledby="faq6-btn">
+            <p>The deterministic AI engine (math-based academic advisor) is always on — even offline. For open-ended natural language chat powered by GPT-4o-mini, you need an internet connection and a configured OpenAI API key in your backend .env file.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FINAL CTA ═══════════════════ -->
+<section class="final-cta">
+  <div class="container reveal">
+    <h2 class="grad-text">Know your grades<br>before results do</h2>
+    <p>Join SPPU engineering students who plan smarter with GPA Intellect.</p>
+    <div class="final-cta-btns">
+      <a href="index.html" class="btn btn-primary">Start for free — no sign-up needed</a>
+      <a href="#features" class="btn btn-secondary-outline">See all features</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="footer-brand-logo" aria-label="GPA Intellect home">
+          <div class="navbar-logo-icon" aria-hidden="true" style="width:30px;height:30px;border-radius:8px;">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:#09090b;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <span>GPA Intellect</span>
+        </a>
+        <p class="footer-tagline">AI-powered GPA calculator for SPPU CBCS engineering students.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="index.html">Open App</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <a href="#howitworks">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a href="index.html#view-settings">Grading Schemes</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="mailto:contact@gpaintellect.in">Contact</a>
+      </div>
+    </div>
+    <div class="footer-wordmark" aria-hidden="true">GPA Intellect</div>
+    <div class="footer-bottom">
+      <span class="footer-bottom-text">2026 GPA Intellect. Built for SPPU engineering students.</span>
+      <span class="footer-bottom-text">Deterministic engine. Zero hallucinated math.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="landing.js"></script>
+</body>
+</html>
