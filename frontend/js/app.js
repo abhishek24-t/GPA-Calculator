@@ -561,12 +561,23 @@ async function saveSgpaToHistory() {
     if (res.ok) {
       showToast('Semester record saved to SQLite database!', 'success');
       await loadAcademicHistory();
-    } else {
-      showToast('Failed to save record to backend.', 'error');
+      return;
     }
   } catch (err) {
-    showToast('Saved locally in current session.', 'info');
+    // Offline / GitHub Pages fallback
   }
+
+  const localRecord = {
+    id: Date.now(),
+    ...payload,
+    created_at: new Date().toISOString()
+  };
+  appState.records.push(localRecord);
+  localStorage.setItem('gpa_academic_records', JSON.stringify(appState.records));
+  renderHistoryTable();
+  updateDashboardMetrics();
+  initCharts();
+  showToast('Semester record saved in browser storage!', 'success');
 }
 
 /* ==========================================================================
@@ -1181,13 +1192,39 @@ async function loadAcademicHistory() {
     const res = await fetch(`${API_BASE}/history`);
     if (res.ok) {
       appState.records = await res.json();
+      localStorage.setItem('gpa_academic_records', JSON.stringify(appState.records));
       renderHistoryTable();
       updateDashboardMetrics();
       initCharts();
+      return;
     }
   } catch (err) {
-    renderHistoryTable();
+    // Offline / GitHub Pages fallback
   }
+
+  // Load from localStorage or seed initial SPPU demo records
+  const stored = localStorage.getItem('gpa_academic_records');
+  if (stored) {
+    try {
+      appState.records = JSON.parse(stored);
+    } catch (e) {
+      appState.records = [];
+    }
+  }
+
+  if (!appState.records || appState.records.length === 0) {
+    appState.records = [
+      { id: 1, record_type: 'semester', title: 'Semester 1 (FE Sem 1)', sgpa: 8.12, credits: 20.0, created_at: new Date(Date.now() - 365*24*3600*1000).toISOString() },
+      { id: 2, record_type: 'semester', title: 'Semester 2 (FE Sem 2)', sgpa: 8.28, credits: 20.0, created_at: new Date(Date.now() - 270*24*3600*1000).toISOString() },
+      { id: 3, record_type: 'semester', title: 'Semester 3 (SE Sem 1)', sgpa: 8.45, credits: 22.0, created_at: new Date(Date.now() - 180*24*3600*1000).toISOString() },
+      { id: 4, record_type: 'semester', title: 'Semester 4 (SE Sem 2)', sgpa: 8.68, credits: 22.0, created_at: new Date(Date.now() - 90*24*3600*1000).toISOString() }
+    ];
+    localStorage.setItem('gpa_academic_records', JSON.stringify(appState.records));
+  }
+
+  renderHistoryTable();
+  updateDashboardMetrics();
+  initCharts();
 }
 
 function renderHistoryTable() {
@@ -1235,7 +1272,7 @@ function closeEditModal() {
 
 async function handleEditRecordSubmit(e) {
   e.preventDefault();
-  const id = document.getElementById('editRecordId').value;
+  const id = parseInt(document.getElementById('editRecordId').value, 10);
   const title = document.getElementById('editTitle').value.trim();
   const sgpa = parseFloat(document.getElementById('editSgpa').value);
   const credits = parseFloat(document.getElementById('editCredits').value);
@@ -1250,13 +1287,24 @@ async function handleEditRecordSubmit(e) {
       showToast('Record updated successfully!', 'success');
       closeEditModal();
       await loadAcademicHistory();
-    } else {
-      showToast('Failed to update record.', 'error');
+      return;
     }
   } catch (err) {
-    showToast('Updated in current session.', 'info');
-    closeEditModal();
+    // Offline fallback
   }
+
+  const rec = appState.records.find(r => r.id === id);
+  if (rec) {
+    rec.title = title;
+    rec.sgpa = sgpa;
+    rec.credits = credits;
+    localStorage.setItem('gpa_academic_records', JSON.stringify(appState.records));
+    renderHistoryTable();
+    updateDashboardMetrics();
+    initCharts();
+    showToast('Record updated in browser storage!', 'success');
+  }
+  closeEditModal();
 }
 
 async function deleteHistoryRecord(recordId) {
@@ -1267,10 +1315,18 @@ async function deleteHistoryRecord(recordId) {
     if (res.ok) {
       showToast('Record deleted.', 'success');
       await loadAcademicHistory();
+      return;
     }
   } catch (err) {
-    showToast('Failed to delete record from backend.', 'error');
+    // Offline fallback
   }
+
+  appState.records = appState.records.filter(r => r.id !== recordId);
+  localStorage.setItem('gpa_academic_records', JSON.stringify(appState.records));
+  renderHistoryTable();
+  updateDashboardMetrics();
+  initCharts();
+  showToast('Record removed from browser storage.', 'info');
 }
 
 /* ==========================================================================

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPA Intellect | SPPU Engineering Academic Advisor</title>
+  <meta name="description" content="AI-powered GPA and CGPA calculator for SPPU CBCS engineering students. Calculate SGPA, CGPA, target predictions, what-if simulations, and get instant AI academic advice.">
+  <meta property="og:title" content="GPA Intellect | SPPU Engineering Academic Advisor">
+  <meta property="og:description" content="Smart SGPA, CGPA, target planning and SPPU percentage conversion with an AI advisor that never guesses the math.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="appSidebar" aria-label="Main navigation">
+      <div class="sidebar-header">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <h2>GPA Intellect</h2>
+          <span class="brand-tag">AI Academic Agent</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav" aria-label="App sections">
+        <div class="nav-section-title">Core Academic</div>
+        <a class="nav-item active" data-view="dashboard" id="navDashboard" role="button" tabindex="0" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" data-view="sgpa" id="navSgpa" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+          <span>SGPA Calculator</span>
+        </a>
+        <a class="nav-item" data-view="cgpa" id="navCgpa" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
+          <span>CGPA Calculator</span>
+        </a>
+        <a class="nav-item" data-view="converter" id="navConverter" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg>
+          <span>SPPU % Converter</span>
+        </a>
+        <div class="nav-section-title">AI and Intelligence</div>
+        <a class="nav-item" data-view="chat" id="navChat" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/><circle cx="12" cy="11" r="1"/><circle cx="8" cy="11" r="1"/><circle cx="16" cy="11" r="1"/></svg>
+          <span>GPA Assistant AI</span>
+          <span class="nav-badge">Agent</span>
+        </a>
+        <a class="nav-item" data-view="target" id="navTarget" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span>Target GPA Predictor</span>
+        </a>
+        <a class="nav-item" data-view="whatif" id="navWhatIf" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+          <span>What-If Analysis</span>
+        </a>
+        <a class="nav-item" data-view="backlog" id="navBacklog" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+          <span>Backlog Manager</span>
+        </a>
+        <div class="nav-section-title">Persistence and System</div>
+        <a class="nav-item" data-view="history" id="navHistory" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Academic History</span>
+        </a>
+        <a class="nav-item" data-view="settings" id="navSettings" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>Grading Schemes</span>
+        </a>
+        <div class="nav-section-title">Marketing & Overview</div>
+        <a class="nav-item" href="landing.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span>Landing Page</span>
+          <span class="nav-badge" style="background:rgba(255,255,255,0.06);color:var(--text-secondary);">External</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="system-status-pill">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="systemStatusText">Deterministic Engine Active</span>
+        </div>
+      </div>
+    </aside>
+    <main class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle-btn" id="sidebarToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <h1 class="page-title" id="currentViewTitle">Academic Dashboard</h1>
+          <span class="sppu-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            SPPU 10-Pt CBCS
+          </span>
+        </div>
+        <nav class="topbar-nav-pill" aria-label="Quick switcher">
+          <button type="button" class="top-nav-btn active" data-view="dashboard">Dashboard</button>
+          <button type="button" class="top-nav-btn" data-view="sgpa">SGPA</button>
+          <button type="button" class="top-nav-btn" data-view="cgpa">CGPA</button>
+          <button type="button" class="top-nav-btn" data-view="target">Target</button>
+          <button type="button" class="top-nav-btn" data-view="converter">Converter</button>
+          <button type="button" class="top-nav-btn" data-view="history">History</button>
+        </nav>
+        <div class="topbar-right">
+          <button class="btn btn-secondary-outline btn-sm" id="btnTopAskAi" onclick="navigateTo('chat')" aria-label="Open AI Assistant">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+            Ask AI
+          </button>
+          <button class="btn btn-primary btn-sm" id="btnTopSave" onclick="saveCurrentToHistory()" aria-label="Save current calculation">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save
+          </button>
+          <div class="ai-status-pill" id="aiStatusPill">
+            <span class="status-dot" style="background:#4ade80;box-shadow:0 0 7px #4ade80;" aria-hidden="true"></span>
+            <span id="aiStatusText">AI Ready (Dual Mode)</span>
+          </div>
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark/light theme">
+            <svg id="themeMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            <svg id="themeSun" style="display:none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </button>
+        </div>
+      </header>
+      <div class="content-container">
+
+        <section class="view-section active" id="view-dashboard">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-info">
+                <p>Cumulative GPA</p>
+                <div class="stat-value" id="dashCgpa">8.39 <span>/ 10</span></div>
+                <div class="stat-subtext" id="dashCgpaSub">Weighted across 84 credits</div>
+              </div>
+              <div class="stat-icon emerald" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <p>Latest Semester SGPA</p>
+                <div class="stat-value" id="dashLatestSgpa">8.68 <span>/ 10</span></div>
+                <div class="stat-subtext" id="dashLatestSgpaSub">Semester 4 (SE Sem 2)</div>
+              </div>
+              <div class="stat-icon cyan" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/><path d="M4 22h16"/></svg>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <p>Total Completed Credits</p>
+                <div class="stat-value" id="dashCredits">84.0 <span>cr</span></div>
+                <div class="stat-subtext">Out of 160 required for B.E.</div>
+              </div>
+              <div class="stat-icon amber" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <p>Target CGPA Gap</p>
+                <div class="stat-value" id="dashTargetGap">0.11 <span>pts</span></div>
+                <div class="stat-subtext">Target: 8.50 CGPA (Feasible)</div>
+              </div>
+              <div class="stat-icon" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-grid">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>Performance</div>
+                  <h3 class="card-title">Academic Performance Progression</h3>
+                  <p class="card-subtitle">Semester-wise SGPA trajectory vs Cumulative CGPA</p>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="navigateTo('sgpa')">+ New SGPA</button>
+              </div>
+              <div style="height:300px;position:relative;">
+                <canvas id="performanceChart" aria-label="Performance chart"></canvas>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>Distribution</div>
+                  <h3 class="card-title">Grade Distribution</h3>
+                  <p class="card-subtitle">Summary of all earned grades</p>
+                </div>
+              </div>
+              <div style="height:210px;position:relative;">
+                <canvas id="gradeDistributionChart" aria-label="Grade distribution"></canvas>
+              </div>
+              <div style="margin-top:12px;text-align:center;font-size:0.76rem;color:var(--text-muted);">
+                Active: <strong style="color:var(--text-secondary)">SPPU CBCS 10-Point</strong>
+              </div>
+            </div>
+          </div>
+          <!-- SPPU Percentage & Class Converter Card in Dashboard Bento -->
+          <div class="card" style="margin-top:18px;">
+            <div class="card-header">
+              <div>
+                <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>Conversion</div>
+                <h3 class="card-title">SPPU Percentage & Degree Class Converter</h3>
+                <p class="card-subtitle">Official Circular No. 332/2020 tiered engineering formula</p>
+              </div>
+              <span class="sppu-badge">Circular 332/2020</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:24px;align-items:center;">
+              <div>
+                <label class="form-label" for="dashConverterCgpa">Enter Cumulative CGPA (0 – 10):</label>
+                <div style="display:flex;gap:10px;align-items:center;">
+                  <input type="number" step="0.01" min="0" max="10" class="form-control" id="dashConverterCgpa" value="8.39" style="font-size:1.1rem;font-weight:700;">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btnSyncDashCgpa" title="Load current CGPA from history">Sync CGPA</button>
+                </div>
+                <div style="font-size:0.75rem;color:var(--text-muted);margin-top:7px;">Updates dynamically as you type.</div>
+              </div>
+              <div class="converter-result">
+                <div class="converter-chip">
+                  <div class="converter-chip-label">Equivalent Percentage</div>
+                  <div class="converter-chip-value" id="dashConverterPercent">75.68%</div>
+                </div>
+                <div class="converter-chip">
+                  <div class="converter-chip-label">SPPU Degree Class</div>
+                  <div class="converter-chip-value" id="dashConverterClass" style="font-size:1rem;color:var(--pass-color);line-height:1.3;padding-top:6px;">First Class with Distinction</div>
+                </div>
+              </div>
+            </div>
+            <details class="formula-details">
+              <summary>Show official formula breakdown (SPPU Circular 332/2020)</summary>
+              <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6;margin-top:8px;">
+                <p id="dashFormulaExplanation" style="margin-bottom:8px;">
+                  Active Formula for CGPA <strong>8.39</strong> (Range: 8.25 – 9.49, Grade A+):<br>
+                  <code style="background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:4px;color:var(--text-white);font-family:'JetBrains Mono',monospace;">Percentage = 12 × CGPA − 25 = 12 × 8.39 − 25 = 75.68%</code>
+                </p>
+                <div style="font-size:0.73rem;color:var(--text-muted);">
+                  SPPU CBCS Engineering Tiered Grading Bands: O (9.5-10): <code>20×CGPA−100</code> | A+ (8.25-9.49): <code>12×CGPA−25</code> | A (6.75-8.24): <code>10×CGPA−7.5</code> | B+ (5.75-6.74): <code>5×CGPA+26.25</code> | B/C (4.75-5.74): <code>10×CGPA−2.5</code> | D (4.0-4.74): <code>6.6×CGPA+13.6</code>
+                </div>
+              </div>
+            </details>
+          </div>
+          <div class="action-banner">
+            <div>
+              <h3 style="font-size:1rem;font-weight:700;color:var(--text-white);">Need personalized academic advising?</h3>
+              <p style="color:var(--text-muted);font-size:0.83rem;margin-top:3px;">Ask the AI about target grades, what-if scenarios, or backlog recovery.</p>
+            </div>
+            <button class="btn btn-primary" onclick="navigateTo('chat')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+              Open AI Assistant
+            </button>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-sgpa">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>SGPA</div>
+                <h2 class="card-title">Semester Grade Point Average Calculator</h2>
+                <p class="card-subtitle">SPPU CBCS formula: SGPA = sum(Credit x GP) / sum(Credits)</p>
+              </div>
+              <div style="display:flex;gap:9px;flex-shrink:0;">
+                <button class="btn btn-secondary btn-sm" id="btnLoadSgpaSample">Load Sample</button>
+                <button class="btn btn-secondary btn-sm" id="btnAddSubjectRow">+ Add Subject</button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table" id="sgpaTable">
+                <thead><tr>
+                  <th style="width:32%">Subject / Course Name</th>
+                  <th style="width:18%">Course Code</th>
+                  <th style="width:15%">Credits</th>
+                  <th style="width:20%">Letter Grade</th>
+                  <th style="width:15%">Action</th>
+                </tr></thead>
+                <tbody id="sgpaTableBody"></tbody>
+              </table>
+            </div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+              <div style="display:flex;gap:9px;">
+                <button class="btn btn-primary" id="btnCalculateSgpa">Calculate SGPA</button>
+                <button class="btn btn-secondary" id="btnSaveSgpaToHistory" style="display:none;">Save to History</button>
+              </div>
+              <div style="font-size:0.76rem;color:var(--text-muted);">* All credits must be positive. Missing inputs are not guessed.</div>
+            </div>
+            <div class="result-banner" id="sgpaResultBanner" style="display:none;">
+              <div class="result-main">
+                <h3>Calculated Semester GPA</h3>
+                <div class="result-score" id="sgpaResultScore">0.00 <span>/ 10.0</span></div>
+                <div id="sgpaBacklogBadge" style="margin-top:5px;"></div>
+              </div>
+              <div class="result-breakdown">
+                <div class="breakdown-item"><div class="breakdown-label">Total Credits</div><div class="breakdown-val" id="sgpaResultCredits">0.0</div></div>
+                <div class="breakdown-item"><div class="breakdown-label">Weighted Points</div><div class="breakdown-val" id="sgpaResultPoints">0.00</div></div>
+                <div class="breakdown-item"><div class="breakdown-label">Subjects</div><div class="breakdown-val" id="sgpaResultCount">0</div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-cgpa">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>CGPA</div>
+                <h2 class="card-title">Cumulative Grade Point Average Calculator</h2>
+                <p class="card-subtitle">Credit-weighted cumulative GPA vs simple unweighted average.</p>
+              </div>
+              <div style="display:flex;gap:9px;flex-shrink:0;">
+                <button class="btn btn-secondary btn-sm" id="btnLoadCgpaFromHistory">Load From History</button>
+                <button class="btn btn-secondary btn-sm" id="btnAddSemesterRow">+ Add Semester</button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table" id="cgpaTable">
+                <thead><tr>
+                  <th style="width:35%">Semester Title</th>
+                  <th style="width:25%">Earned SGPA</th>
+                  <th style="width:25%">Semester Credits</th>
+                  <th style="width:15%">Action</th>
+                </tr></thead>
+                <tbody id="cgpaTableBody"></tbody>
+              </table>
+            </div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+              <button class="btn btn-primary" id="btnCalculateCgpa">Calculate Cumulative CGPA</button>
+              <div style="font-size:0.76rem;color:var(--text-muted);">CGPA = sum(SGPA x Credits) / sum(Credits)</div>
+            </div>
+            <div class="result-banner" id="cgpaResultBanner" style="display:none;">
+              <div class="result-main">
+                <h3>Calculated Cumulative CGPA</h3>
+                <div class="result-score" id="cgpaResultScore">0.00 <span>/ 10.0</span></div>
+                <p id="cgpaExplanationText" style="font-size:0.8rem;color:var(--text-muted);max-width:480px;margin-top:5px;"></p>
+              </div>
+              <div class="result-breakdown">
+                <div class="breakdown-item"><div class="breakdown-label">Weighted CGPA</div><div class="breakdown-val" id="cgpaWeightedVal" style="color:var(--pass-color);">0.00</div></div>
+                <div class="breakdown-item"><div class="breakdown-label">Simple Avg</div><div class="breakdown-val" id="cgpaSimpleAvgVal">0.00</div></div>
+                <div class="breakdown-item"><div class="breakdown-label">Total Credits</div><div class="breakdown-val" id="cgpaTotalCredits">0.0</div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-target">
+          <div class="dashboard-grid">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>Target</div>
+                  <h2 class="card-title">Target GPA Feasibility Predictor</h2>
+                  <p class="card-subtitle">Calculate the exact SGPA required to achieve your graduation goal.</p>
+                </div>
+              </div>
+              <form id="targetGpaForm">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                  <div class="form-group">
+                    <label class="form-label" for="targetCurrentCgpa">Current CGPA</label>
+                    <input type="number" step="0.01" min="0" max="10" class="form-control" id="targetCurrentCgpa" value="8.20" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="targetCompletedCredits">Completed Credits</label>
+                    <input type="number" step="0.5" min="0" max="250" class="form-control" id="targetCompletedCredits" value="64.0" required>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                  <div class="form-group">
+                    <label class="form-label" for="targetRemainingCredits">Remaining Credits</label>
+                    <input type="number" step="0.5" min="1" max="250" class="form-control" id="targetRemainingCredits" value="44.0" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="targetDesiredCgpa">Target CGPA Goal</label>
+                    <input type="number" step="0.01" min="0" max="10" class="form-control" id="targetDesiredCgpa" value="8.60" required>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;margin-top:6px;">Run Feasibility Analysis</button>
+              </form>
+              <div id="targetResultCard" style="display:none;margin-top:22px;">
+                <div class="result-banner">
+                  <div class="result-main">
+                    <div id="targetFeasibilityBadge" style="margin-bottom:7px;"></div>
+                    <h3>Required Average Remaining SGPA</h3>
+                    <div class="result-score" id="targetRequiredSgpa">0.00 <span>/ 10.0</span></div>
+                  </div>
+                  <div class="result-breakdown">
+                    <div class="breakdown-item"><div class="breakdown-label">Max Achievable</div><div class="breakdown-val" id="targetMaxAchievable" style="color:var(--pass-color);">0.00</div></div>
+                  </div>
+                </div>
+                <p id="targetMessageText" style="margin-top:14px;font-size:0.86rem;line-height:1.6;color:var(--text-secondary);"></p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>Scenarios</div>
+                  <h3 class="card-title">Scenario Projections</h3>
+                  <p class="card-subtitle">CGPA across various remaining GPA benchmarks</p>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="custom-table" id="targetScenariosTable">
+                  <thead><tr><th>Remaining SGPA</th><th>Final CGPA</th><th>Target Status</th></tr></thead>
+                  <tbody id="targetScenariosBody">
+                    <tr><td colspan="3" style="text-align:center;color:var(--text-muted);padding:24px 0;">Run analysis to view projections.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-chat">
+          <div class="chat-container">
+            <div class="chat-header">
+              <div class="chat-agent-info">
+                <div class="chat-avatar" aria-hidden="true">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><rect width="18" height="12" x="3" y="8" rx="3"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/><path d="M9 18h6"/></svg>
+                </div>
+                <div>
+                  <h3 style="font-size:0.96rem;font-weight:700;color:var(--text-white);">GPA Assistant AI</h3>
+                  <p style="font-size:0.71rem;color:var(--text-muted);">Deterministic GPA Engine and Academic LLM</p>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btnClearChatHistory">Clear Chat</button>
+            </div>
+            <div class="chat-messages" id="chatMessages" role="log" aria-label="Chat messages" aria-live="polite">
+              <div class="message-bubble assistant">
+                Hello! I am <strong>GPA Assistant AI</strong>, your academic advisor for SPPU CBCS grading.<br><br>
+                Ask me things like:<br>
+                - "What is my SGPA if I got 4 credits A+, 4 credits A, and 3 credits O?"<br>
+                - "How can I reach 8.5 CGPA from 8.10 with 40 credits left?"<br>
+                - "How does a backlog in a 4-credit course affect my CGPA?"
+                <div class="verified-engine-pill">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Grounded in Deterministic Calculation Engine
+                </div>
+              </div>
+            </div>
+            <div class="chat-quick-prompts" role="list" aria-label="Suggested prompts">
+              <span class="prompt-chip" data-prompt="How can I reach an 8.5 CGPA?" role="listitem" tabindex="0">Target 8.5 CGPA</span>
+              <span class="prompt-chip" data-prompt="Calculate SGPA: Math 4 credits A+, Physics 4 credits A, DSA 4 credits O" role="listitem" tabindex="0">Calculate SGPA sample</span>
+              <span class="prompt-chip" data-prompt="How will a backlog affect my CGPA in SPPU?" role="listitem" tabindex="0">Backlog impact</span>
+              <span class="prompt-chip" data-prompt="What happens if I score 8.8 SGPA next semester?" role="listitem" tabindex="0">What if 8.8 next?</span>
+              <span class="prompt-chip" data-prompt="Raise CGPA from 6.8 to 7.5 in 2 semesters" role="listitem" tabindex="0">Raise CGPA 6.8 to 7.5</span>
+              <span class="prompt-chip" data-prompt="Explain SPPU 10-point grading system" role="listitem" tabindex="0">SPPU grading scheme</span>
+            </div>
+            <form class="chat-input-area" id="chatForm" aria-label="Chat input">
+              <input type="text" class="chat-input" id="chatInput" placeholder="Ask GPA Assistant AI anything about grades, CGPA, or predictions..." autocomplete="off" required aria-label="Chat message input">
+              <button type="submit" class="btn btn-primary" id="btnSendChat" aria-label="Send message">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Send
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-whatif">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>Simulation</div>
+                <h2 class="card-title">What-If Academic Simulator</h2>
+                <p class="card-subtitle">Adjust subject grades or future semester SGPAs to instantly see the calculated delta.</p>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <button class="btn btn-primary btn-sm" id="btnWhatIfModeSgpa">Subject Grade What-If</button>
+                <button class="btn btn-secondary btn-sm" id="btnWhatIfModeCgpa">Semester CGPA What-If</button>
+              </div>
+            </div>
+            <div id="whatIfContentArea"></div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-backlog">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>Backlog</div>
+                <h2 class="card-title">Backlog and Grade Improvement Manager</h2>
+                <p class="card-subtitle">Simulate remedial clearing impact on CGPA under configurable rules.</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btnAddBacklogSubject">+ Add Backlog Course</button>
+            </div>
+            <div class="card" style="background:var(--warn-bg);border-color:var(--warn-border);margin-bottom:18px;">
+              <div style="display:flex;gap:11px;align-items:flex-start;">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--warn-color)" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <div style="font-size:0.82rem;color:var(--text-off-white);line-height:1.5;">
+                  <strong>SPPU Examination Rule:</strong> Under SPPU CBCS guidelines, a backlog course earns <strong>0 Grade Points (F)</strong> until cleared. Once cleared, passing grade points replace the failed attempt.
+                </div>
+              </div>
+            </div>
+            <div style="margin-bottom:18px;">
+              <label class="form-label" for="backlogRuleSelect">University Backlog Treatment Ordinance:</label>
+              <select class="form-control" id="backlogRuleSelect" style="max-width:480px;">
+                <option value="replacement" selected>SPPU CBCS Standard: Grade Points Replace 0 GP upon passing</option>
+                <option value="penalty_cap">Capped Ordinance: Improvement Grade capped at B+ (7.0 GP)</option>
+                <option value="current_attempt_only">Earned Credits added only in clearance term</option>
+              </select>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table" id="backlogTable">
+                <thead><tr><th>Backlog Course Title</th><th>Credits</th><th>Target Cleared Grade</th><th>Action</th></tr></thead>
+                <tbody id="backlogTableBody"></tbody>
+              </table>
+            </div>
+            <button class="btn btn-primary" id="btnCalculateBacklogImpact" style="margin-top:18px;">Simulate Backlog Clearance Boost</button>
+            <div class="result-banner" id="backlogResultBanner" style="display:none;">
+              <div class="result-main">
+                <h3>Simulated CGPA After Clearing Backlogs</h3>
+                <div class="result-score" id="backlogSimulatedCgpa">0.00 <span>/ 10.0</span></div>
+                <div style="margin-top:5px;font-size:0.86rem;color:var(--pass-color);font-weight:700;" id="backlogGainText">+0.00 CGPA Jump</div>
+              </div>
+              <div class="result-breakdown">
+                <div class="breakdown-item"><div class="breakdown-label">Current CGPA</div><div class="breakdown-val" id="backlogBaseCgpa">0.00</div></div>
+                <div class="breakdown-item"><div class="breakdown-label">Cleared Credits</div><div class="breakdown-val" id="backlogCreditsCleared">0.0</div></div>
+                <div class="breakdown-item"><div class="breakdown-label">Points Recovered</div><div class="breakdown-val" id="backlogPointsRecovered">0.00</div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-history">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>History</div>
+                <h2 class="card-title">Academic Record History (SQLite Persisted)</h2>
+                <p class="card-subtitle">Manage, edit, or delete saved semester calculations.</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btnReloadHistory">Refresh</button>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table" id="historyTable">
+                <thead><tr><th>ID</th><th>Type</th><th>Semester Title</th><th>SGPA</th><th>Credits</th><th>Saved Date</th><th>Actions</th></tr></thead>
+                <tbody id="historyTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-converter">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>Official SPPU Conversion</div>
+                <h2 class="card-title">SPPU CGPA to Percentage & Degree Class Converter</h2>
+                <p class="card-subtitle">Governed by official Savitribai Phule Pune University Circular No. 332/2020</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btnSyncDedicatedConverter">Sync from History</button>
+            </div>
+            
+            <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:start;margin-top:14px;">
+              <div>
+                <div class="form-group">
+                  <label class="form-label" for="converterCgpaInput">Cumulative CGPA (0.00 – 10.00)</label>
+                  <input type="number" step="0.01" min="0" max="10" class="form-control" id="converterCgpaInput" value="8.39" style="font-size:1.25rem;font-weight:800;">
+                  <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px;">Calculates dynamically as you type.</div>
+                </div>
+
+                <div class="converter-result" style="margin-top:20px;">
+                  <div class="converter-chip">
+                    <div class="converter-chip-label">Equivalent Percentage</div>
+                    <div class="converter-chip-value" id="converterPercentResult">75.68%</div>
+                  </div>
+                  <div class="converter-chip">
+                    <div class="converter-chip-label">Degree Classification</div>
+                    <div class="converter-chip-value" id="converterClassResult" style="font-size:0.98rem;color:var(--pass-color);line-height:1.3;padding-top:6px;">First Class with Distinction</div>
+                  </div>
+                </div>
+
+                <div style="margin-top:20px;padding:16px;border-radius:var(--r-md);background:rgba(255,255,255,0.03);border:1px solid var(--border-subtle);">
+                  <div style="font-size:0.72rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Applied SPPU Formula</div>
+                  <div id="converterFormulaDisplay" style="font-family:'JetBrains Mono',monospace;font-size:0.86rem;color:var(--text-white);font-weight:600;">
+                    12 × CGPA − 25 = 12 × 8.39 − 25 = 75.68%
+                  </div>
+                  <div id="converterBandDisplay" style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">
+                    Grade Band: 8.25 – 9.49 (Grade A+)
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 style="font-size:0.88rem;font-weight:700;color:var(--text-white);margin-bottom:10px;">Official SPPU Conversion Matrix (Circular 332/2020)</h4>
+                <div class="table-responsive">
+                  <table class="custom-table" style="font-size:0.82rem;">
+                    <thead>
+                      <tr>
+                        <th>Grade</th>
+                        <th>CGPA Range</th>
+                        <th>Official Formula</th>
+                        <th>Standard Class</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>O</strong></td><td>9.50 – 10.00</td><td><code>20 × CGPA − 100</code></td><td>Distinction</td></tr>
+                      <tr style="background:rgba(255,255,255,0.03);"><td><strong>A+</strong></td><td>8.25 – 9.49</td><td><code>12 × CGPA − 25</code></td><td>Distinction</td></tr>
+                      <tr><td><strong>A</strong></td><td>6.75 – 8.24</td><td><code>10 × CGPA − 7.5</code></td><td>First Class</td></tr>
+                      <tr><td><strong>B+</strong></td><td>5.75 – 6.74</td><td><code>5 × CGPA + 26.25</code></td><td>Higher Second</td></tr>
+                      <tr><td><strong>B</strong></td><td>5.25 – 5.74</td><td><code>10 × CGPA − 2.5</code></td><td>Second Class</td></tr>
+                      <tr><td><strong>C</strong></td><td>4.75 – 5.24</td><td><code>10 × CGPA − 2.5</code></td><td>Second Class</td></tr>
+                      <tr><td><strong>D / P</strong></td><td>4.00 – 4.74</td><td><code>6.6 × CGPA + 13.6</code></td><td>Pass Class</td></tr>
+                      <tr><td><strong>F</strong></td><td>&lt; 4.00</td><td>Failed / Backlog</td><td>Fail</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-settings">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="section-chip" style="margin-bottom:8px;"><span class="section-chip-dot"></span>Settings</div>
+                <h2 class="card-title">Grading Scheme and Scale Settings</h2>
+                <p class="card-subtitle">Configure letter-grade to grade-point conversion. Default: SPPU 10-Point CBCS.</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btnResetToSppuDefault">Reset to SPPU Default</button>
+            </div>
+            <div class="table-responsive" style="max-width:600px;">
+              <table class="custom-table" id="schemeTable">
+                <thead><tr><th>Letter Grade</th><th>Grade Point</th><th>Marks Range (SPPU)</th></tr></thead>
+                <tbody id="schemeTableBody"></tbody>
+              </table>
+            </div>
+            <div style="margin-top:22px;padding:18px;border-radius:var(--r-lg);background:rgba(255,255,255,0.025);border:1px solid var(--border-subtle);">
+              <h4 style="font-size:0.88rem;font-weight:700;margin-bottom:5px;color:var(--text-white);">OpenAI API Key Configuration</h4>
+              <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:11px;">
+                The AI Assistant works with the deterministic engine by default. To enable GPT-4o-mini, add your key in backend/.env:
+              </p>
+              <pre style="background:var(--bg-base);padding:9px 13px;border-radius:var(--r-sm);font-family:'JetBrains Mono',monospace;font-size:0.77rem;color:var(--text-secondary);border:1px solid var(--border-subtle);overflow-x:auto;">OPENAI_API_KEY=sk-your-actual-openai-api-key</pre>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <button class="floating-ai-launcher" id="floatingAiLauncher" onclick="navigateTo('chat')" aria-label="Open GPA Assistant AI">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/><circle cx="12" cy="11" r="1"/><circle cx="8" cy="11" r="1"/><circle cx="16" cy="11" r="1"/></svg>
+    <span class="floating-ai-badge">Ask AI</span>
+  </button>
+
+  <div class="modal-backdrop" id="editRecordModal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="editModalTitle" style="font-size:0.98rem;font-weight:700;color:var(--text-white);">Edit Academic Record</h3>
+        <button class="btn-icon btn-secondary" onclick="closeEditModal()" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="editRecordForm">
+        <div class="modal-body">
+          <input type="hidden" id="editRecordId">
+          <div class="form-group">
+            <label class="form-label" for="editTitle">Record Title</label>
+            <input type="text" class="form-control" id="editTitle" required>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div class="form-group">
+              <label class="form-label" for="editSgpa">SGPA</label>
+              <input type="number" step="0.01" min="0" max="10" class="form-control" id="editSgpa" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="editCredits">Credits</label>
+              <input type="number" step="0.5" min="0.5" max="100" class="form-control" id="editCredits" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

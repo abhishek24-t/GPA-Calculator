@@ -1,5 +1,9 @@
 # 🎓 GPA Calculator AI Agent (SPPU Engineering Edition)
 
+> 🚀 **Live Demo on GitHub Pages**:  
+> • **[Academic Dashboard App](https://abhishek24-t.github.io/GPA-Calculator/)**  
+> • **[Marketing Landing Page](https://abhishek24-t.github.io/GPA-Calculator/landing.html)**
+
 A modern, full-stack, deterministic academic GPA calculation engine and conversational AI advisor designed for college engineering students, with specialized support for the **Savitribai Phule Pune University (SPPU) Choice Based Credit System (CBCS)**.
 
 Built with **FastAPI**, **SQLite**, **Vanilla HTML5/CSS3/JavaScript**, and **OpenAI API** with a deterministic fallback engine.
